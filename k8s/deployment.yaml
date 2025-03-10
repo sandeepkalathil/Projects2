@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bingo-game
+  labels:
+    app: bingo-game
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: bingo-game
+  template:
+    metadata:
+      labels:
+        app: bingo-game
+    spec:
+      containers:
+      - name: bingo-game
+        image: modern-bingo:latest
+        ports:
+        - containerPort: 8011
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
